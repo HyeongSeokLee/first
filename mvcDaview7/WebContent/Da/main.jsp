@@ -59,11 +59,6 @@ a{
 </c:if>		
 	<div id="border">
 		<h1>게시판</h1>
-		
-		
-		
-		
-
 	<!-- 검색창 폼 -->
 	<div id="border_table">
 	<div id="serach_wrap_board" class="search_wrap_board_style">
