@@ -8,6 +8,13 @@ public class Member {
 	private String m_email;
 	private String m_nick;
 	private Date m_reg_date;
+	private String email_auth;
+	public String getEmail_auth() {
+		return email_auth;
+	}
+	public void setEmail_auth(String email_auth) {
+		this.email_auth = email_auth;
+	}
 	public String getM_id() {
 		return m_id;
 	}

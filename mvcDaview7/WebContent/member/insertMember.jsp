@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,6 +61,22 @@
 			wr.moveTo(x, y);
 		}
 	}
+	function mailChk(email){
+		width = 500;
+		height = 250;
+		sx = screen.width;
+		sy = screen.height;
+		x = (sx - width) / 3;
+		y = (sy - height) / 4;
+		if (!email) {
+			alert("이메일을 입력하세요");
+			inForm.m_email.focus();
+		} else {
+			url = "emailCheck.do?email=" + email;
+			wr = window.open(url, "이메일 인증", "width=500,height=250");
+			wr.moveTo(x, y);
+		}
+	}
 </script>
 </head>
 <body>
@@ -68,7 +85,7 @@
 		<h2>회원가입</h2>
 	</center>
 	<form action="insertPro.do" name="inForm" onsubmit="return chk()">
-		<table border=1 align="center" bgcolor="#0096FF">
+		<table align="center" bgcolor="#0096FF">
 			<tr>
 				<th><font color="white">아이디</font></th>
 				<td>
@@ -92,8 +109,18 @@
 				</td>
 			</tr>
 			<tr>
+			
 				<th><font color="white">이메일</font></th>
-				<td><input type="text" name="m_email" required></td>
+				<td><input type="email" name="m_email" value="${email }" required>
+				<input type="button" value="이메일 인증" onclick="javascript:mailChk(inForm.m_email.value)">
+				</td>
+			</tr>
+			<tr>
+			<td>&nbsp;</td>
+			<td><c:if test="${email_auth eq 'Y'}">
+					인증완료
+				</c:if>
+			</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
