@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <%
 Connection conn = null;
-try{
+try{  
 	conn = DBOracleConn.getConnection();
 	out.print("<h3>연결되었습니다.</h3>");
 }catch(Exception e){
