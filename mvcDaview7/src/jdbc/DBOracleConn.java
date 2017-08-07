@@ -21,7 +21,7 @@ public class DBOracleConn {
 		}
 		return conn;
 	}*/
-	String url="jdbc:oracle:thin:@localhost:1521:orcl";
+	String url="jdbc:oracle:thin:@localhost:1522:orcl";
 	String id="scott";
 	String password="tiger";
 
