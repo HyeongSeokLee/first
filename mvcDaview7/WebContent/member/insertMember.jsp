@@ -61,7 +61,9 @@
 			wr.moveTo(x, y);
 		}
 	}
-	function mailChk(email){
+	
+	//인증코드를 입력할 팝업창 생성
+	function mailChk(email,address){
 		width = 500;
 		height = 250;
 		sx = screen.width;
@@ -72,11 +74,19 @@
 			alert("이메일을 입력하세요");
 			inForm.m_email.focus();
 		} else {
-			url = "emailCheck.do?email=" + email;
+			url = "emailCheck.do?email=" + email+"@"+address;
 			wr = window.open(url, "이메일 인증", "width=500,height=250");
 			wr.moveTo(x, y);
 		}
 	}
+	
+	
+	function addressView(val){
+		var frm = document.inForm;
+		frm.address.value=val;
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -111,8 +121,18 @@
 			<tr>
 			
 				<th><font color="white">이메일</font></th>
-				<td><input type="email" name="m_email" value="${email }" required>
-				<input type="button" value="이메일 인증" onclick="javascript:mailChk(inForm.m_email.value)">
+				<td><input type="text" name="m_email" value="" required>
+				@<input type="text" name="address" required>
+				<select name="select_address" onchange="addressView(this.value);">
+					<option value="">직접입력</option>
+					<option value="naver.com">네이버</option>
+					<option value="hanmail.net">다음</option>
+					<option value="nate.com">네이트</option>
+					<option value="gmail.com">구글(gmail)</option>
+					
+				</select>
+				
+				<input type="button" value="이메일 인증" onclick="javascript:mailChk(inForm.m_email.value,inForm.address.value)">
 				</td>
 			</tr>
 			<tr>
