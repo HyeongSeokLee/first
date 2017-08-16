@@ -6,4 +6,5 @@ public interface MemberDao {
 	public int insertMember(MemberDto md);
 	public int nickChk(String m_nick);
 	public int userChk(MemberDto md);
+	public String getM_Nick(String m_email);
 }

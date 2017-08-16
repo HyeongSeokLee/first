@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,7 @@ public class MemberController extends EmailChk{
 	private MemberDaoImpl m_service;
 	
 	@RequestMapping(value = "insertMember",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String home(String email,String address,String email_auth,Model model) {
+	public String insertMember(String email,String address,String email_auth,Model model) {
 		if(email==null){email="";}
 		if(address==null){address="";}
 		if(email_auth==null){email_auth="N";}
@@ -62,6 +63,7 @@ public class MemberController extends EmailChk{
 	@RequestMapping(value="nickCheck",method=RequestMethod.GET)
 	public String nickChk(@RequestParam String m_nick,Model model){
 	    int result=m_service.nickChk(m_nick);
+	    System.out.println(result);
 	    model.addAttribute("result",result);
 	    model.addAttribute("m_nick",m_nick);
 		return "member/nickCheck";
@@ -99,10 +101,37 @@ public class MemberController extends EmailChk{
 		MemberDto md = new MemberDto();
 		md.setM_email(m_email);
 		md.setM_pw(m_pw);
-		int result=m_service.userChk(md);
-		if(result>0) session.setAttribute("m_email", m_email);
+		System.out.println("loginPro email::"+m_email);
+		System.out.println("loginPro m_pw::"+m_pw);
 		
+		int result=m_service.userChk(md);
+		String m_nick = m_service.getM_Nick(m_email);
+		System.out.println("loginPro m_nick:::"+m_nick);
+		if(result>0) session.setAttribute("m_email", m_email);
+		System.out.println("logionPro session확인::"+session.getAttribute("m_email"));
+		
+		model.addAttribute("m_email",m_email);
 		model.addAttribute("result",result);
+		model.addAttribute("m_nick",m_nick);
+
 		return "member/loginPro";
 	}
+	//로그아웃
+	@RequestMapping(value="logoutPro")
+	public String logoutPro(HttpSession session, Model model) {
+		session.invalidate(); //세션에 있는 것 삭제
+		return "member/logoutPro";
+	}
+	
+	//회원 수정
+	@RequestMapping(value="memberModifyForm")
+	public String memberModifyForm(HttpSession session, 
+			String m_email,
+			Model model) {
+		m_email=(String)session.getAttribute("m_email");
+		model.addAttribute("m_email",m_email);
+		return "member/memberModifyForm";
+	}
+
+
 }

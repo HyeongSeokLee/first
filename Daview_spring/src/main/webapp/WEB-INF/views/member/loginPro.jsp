@@ -4,7 +4,7 @@
 
 <c:if test="${result==1 }">
 <script>
-     	location.href='../main.do';
+     	location.href='../board/main.do';
 </script>     	
 </c:if>
 <c:if test="${result==2 }">

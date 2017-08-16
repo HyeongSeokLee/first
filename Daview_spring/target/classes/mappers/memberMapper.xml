@@ -19,9 +19,16 @@
 	</insert>
 
 	<!-- 로그인 하기 위한 user 체크 -->
-	<select id="userChk">
+	<select id="userChk" resultType="int">
 		select count(*)
 		from member
-		where m_email=#{m_email} and m_pw=#{m_pw}
+		where m_email like #{m_email} and m_pw=#{m_pw}
+	</select>
+	
+	<!-- 해당 이메일의 닉네임 가져오기 -->
+	<select id="getM_Nick" resultType="String">
+		select m_nick
+		from member
+		where m_email like #{m_email}
 	</select>
 </mapper>

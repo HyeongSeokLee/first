@@ -33,7 +33,15 @@ public class MemberDaoImpl implements MemberDao {
 	//로그인 처리를위한 유저 확인
 	@Override
 	public int userChk(MemberDto md) {
-		int result=sqlSession.selectOne(namespace+"userChk", md);
-		return 0;
+		int result=sqlSession.selectOne(namespace+".userChk", md);
+
+		return result;
+	}
+	
+	
+	@Override
+	public String getM_Nick(String m_email) {
+		String m_nick= sqlSession.selectOne(namespace+".getM_Nick", m_email);
+		return m_nick;
 	}
 }
