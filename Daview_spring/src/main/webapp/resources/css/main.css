@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+#header1 {
+	position:absolute; 
+	width:400px; 
+	height:100px;
+	margin-left:220px;
+	margin-top:20px;
+	tex
+}
+
+#headerbox {
+	width: 200px;
+	height: 100px;
+	padding-top: 40px;
+	padding-left: 30px;
+	margin-left:850px;
+}
+
+#border {
+	clear: left;
+	text-align: center;
+}
