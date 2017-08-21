@@ -20,7 +20,7 @@ function choice(o) {
 function selectCount(){ 
 			var aa = document.getElementById('aa').value;
 			var selectValue = document.getElementById('countList').value;
-			location.href="main.do?countList="+selectValue+aa;
+			location.href="main?countList="+selectValue+aa;
 }
 </script>
 <style type="text/css">
@@ -41,22 +41,23 @@ a{
 </head>
 <body>
 <c:if test="${empty m_email }">
-<jsp:include page="head.jsp" /><br>	
+<jsp:include page="board/head.jsp" /><br>	
 </c:if>
 
 <c:if test="${!empty m_email}">
 		<div id="header1">
-			<a href="main.do"><img src="../resources/images/DaView_C.jpg"></a>
+			<a href="main"><img src="/resources/images/DaView_C.jpg"></a>
 		</div>
 		<div id="headerbox">
 		<center>${m_nick }님 환영합니다.<br>
 		<div style="margin-top:10px;">
-		<a href="../member/logoutPro.do"><img src="../resources/images/DaView_Logout3.jpg"></a>
-		<a href="../member/memberModifyForm.do"><img src="../resources/images/DaView_MyPage3.jpg"></a>
+		<a href="/member/logoutPro"><img src="/resources/images/DaView_Logout3.jpg"></a>
+		<a href="/member/memberModifyForm"><img src="/resources/images/DaView_MyPage3.jpg"></a>
 		</div>
 		</center>
 		</div>
 </c:if>	
+
 	<div id="border">
 		<h1>게시판</h1>
 
@@ -75,7 +76,7 @@ a{
 						<td><input type="text" name="find_name" id="find_name" onfocus="search()"  size="14" style="width: 300px; height: 16px;"
 							<c:if test="${!empty find_name}">value=${find_name}</c:if> />
 							<input type = "submit" value="검색" id="input_search" />
-							<input type = "button" value = "글쓰기" id = "write" onclick = "location='writeForm.do?pageNum=${curPage}'">
+							<input type = "button" value = "글쓰기" id = "write" onclick = "location='writeForm?pageNum=${curPage}'">
 						</td>
 					</tr>
 				</table>
@@ -99,7 +100,7 @@ a{
 								<option value="식품"<c:if test="${b_part eq '식품' }">selected</c:if>>식품</option>
 								<option value="책"<c:if test="${b_part eq '책' }">selected</c:if>>책</option>
 							</select>
-							<form name="frm" action="main.do" method="get">
+							<form name="frm" action="main" method="get">
 								<input type="hidden" name="b_part" />
 							</form>
 						</th>
@@ -118,14 +119,14 @@ a{
 							<td align="center"><font color="white">${l.b_num}</font></td>
 							<td align="center"><font color="white">${l.b_part }</font></td>
 							<td>
-								<a href = "view.do?b_num=${l.b_num }&pageNum=${curPage}">
+								<a href = "view?b_num=${l.b_num }&pageNum=${curPage}">
 								<font color="white">${l.b_subject }</font></a>
 								
 								<!-- 해당 게시글에 달린 댓글 갯수 -->
 								<font color="white">[${l.c_count }]</font> 
 						 
 							<c:if test="${l.b_rc>20 }">
-									<img src='images/hot.gif'>
+									<img src='/resources/images/hot.gif'>
 							</c:if> 
 							</td>
 			
@@ -133,19 +134,19 @@ a{
  								${l.m_nick}</font></td> 
 						<td align="center">
 						<c:if test="${l.b_star eq '1' }">
-							<img src="images/star_1.jpg">
+							<img src="/resources/images/star_1.jpg">
 						</c:if>
 						<c:if test="${l.b_star eq '2' }">
-							<img src="images/star_2.jpg">
+							<img src="/resources/images/star_2.jpg">
 						</c:if>
 						<c:if test="${l.b_star eq '3' }">
-							<img src="images/star_3.jpg">
+							<img src="/resources/images/star_3.jpg">
 						</c:if>
 						<c:if test="${l.b_star eq '4' }">
-							<img src="images/star_4.jpg">
+							<img src="/resources/images/star_4.jpg">
 						</c:if>
 						<c:if test="${l.b_star eq '5' }">
-							<img src="images/star_5.jpg">
+							<img src="/resources/images/star_5.jpg">
 						</c:if>																													
 						</td>
 						<td align="center"><font color="white">${l.b_rc }</font></td>
@@ -161,24 +162,24 @@ a{
 	
 			<p>
 				<c:if test="${curPage!=1 && curPage!=0}">
-					<a href="main.do?curPage=1&${x}">[처음]</a>
+					<a href="main?curPage=1&${x}">[처음]</a>
 				</c:if>
 				<c:if test="${startPage > countList}">
-					<a href="main.do?curPage=${startPage - 1}${x}">[이전]</a>
+					<a href="main?curPage=${startPage - 1}${x}">[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 					<c:if test="${curPage eq i}">
 						<span style="color:black; font-weight: bold;">${i}</span>
 					</c:if>
 					<c:if test="${curPage != i}">
-					<a href="main.do?curPage=${i}${x}">${i}</a>
+					<a href="main?curPage=${i}${x}">${i}</a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${endPage <totalPage}">
-					<a href="main.do?curPage=${startPage + countList}${x}">[다음]</a>
+					<a href="main?curPage=${startPage + countList}${x}">[다음]</a>
 				</c:if>
 				<c:if test="${curPage != totalPage}">
-					<a href="main.do?curPage=${totalPage}${x}">[끝]</a>
+					<a href="main?curPage=${totalPage}${x}">[끝]</a>
 				</c:if>
 			</p>
 		</center>

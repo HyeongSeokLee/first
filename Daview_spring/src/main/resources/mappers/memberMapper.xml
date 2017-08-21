@@ -9,7 +9,7 @@
 	<select id="nickChk" resultType="int">
 		select count(*)
 		from member
-		where m_nick=#{m_nick}
+		where m_nick=#{m_nick} and m_flag=0
 	</select>
 
 	<!-- 회원 등록 insert -->
@@ -22,13 +22,13 @@
 	<select id="userChk" resultType="int">
 		select count(*)
 		from member
-		where m_email like #{m_email} and m_pw=#{m_pw}
+		where m_email=#{m_email} and m_pw=#{m_pw} and m_flag=0
 	</select>
 	
 	<!-- 해당 이메일의 닉네임 가져오기 -->
 	<select id="getM_Nick" resultType="String">
 		select m_nick
 		from member
-		where m_email like #{m_email}
+		where m_email=#{m_email}
 	</select>
 </mapper>

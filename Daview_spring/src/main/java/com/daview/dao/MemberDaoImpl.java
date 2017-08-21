@@ -11,10 +11,8 @@ import com.daview.dto.MemberDto;
 public class MemberDaoImpl implements MemberDao {
 	@Inject
 	private SqlSession sqlSession;
-
-	private static final String namespace = "com.daview.mapper.MemberMapper";
-
-	
+	private static final String namespace = 
+			"com.daview.mapper.MemberMapper";
 	//회원 등록
 	@Override
 	public int insertMember(MemberDto md) {

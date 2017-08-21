@@ -39,7 +39,7 @@
 			alert("아이디를 입력하세요");
 			inForm.id.focus();
 		} else {
-			url = "id_chk.do?id=" + id;
+			url = "id_chk?id=" + id;
 			wr = window.open(url, "아이디 중복체크", "width=500,height=250");
 			wr.moveTo(x, y);
 		}
@@ -56,7 +56,7 @@
 			alert("닉네임 입력하세요");
 			inForm.m_nick.focus();
 		} else {
-			url = "nickCheck.do?m_nick="+ m_nick;
+			url = "nickCheck?m_nick="+ m_nick;
 			wr = window.open(url, "닉네임 중복체크", "width=500,height=250");
 			wr.moveTo(x, y);
 		}
@@ -73,7 +73,7 @@
 			alert("이메일을 입력하세요");
 			inForm.m_email.focus();
 		} else {
-			url = "emailCheck.do?email=" + email+"&address="+address;
+			url = "emailCheck?email=" + email+"&address="+address;
 			wr = window.open(url, "이메일 인증", "width=500,height=250");
 			wr.moveTo(x, y);
 		}
@@ -90,7 +90,7 @@
 	<center>
 		<h2>회원가입</h2>
 	</center>
-	<form action="insertPro.do" name="inForm" method="post" onsubmit="return chk()">
+	<form action="insertPro" name="inForm" method="post" onsubmit="return chk()">
 		<table align="center" bgcolor="#0096FF">
 			<tr>
 			

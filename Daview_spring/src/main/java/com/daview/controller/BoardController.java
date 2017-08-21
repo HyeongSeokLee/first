@@ -1,17 +1,11 @@
 package com.daview.controller;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.daview.dao.MemberDaoImpl;
 
 @Controller
@@ -19,8 +13,6 @@ import com.daview.dao.MemberDaoImpl;
 public class BoardController {
 	@Inject
 	private MemberDaoImpl m_service;
-	@Inject
-	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "main", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(HttpSession session,String m_email,String m_nick, Model model) {
@@ -33,6 +25,6 @@ public class BoardController {
 		
 		model.addAttribute("m_email", m_email);
 		model.addAttribute("m_nick",m_nick);
-		return "board/main";
+		return "main";
 	}
 }

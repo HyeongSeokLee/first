@@ -1,7 +1,6 @@
 package com.daview.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
+
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -19,9 +18,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
-		return "index";
+		logger.info("/호출");
+		return "redirect:/main";
 	}
-
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main(Locale locale, Model model) {
+		logger.info("/main 호출");
+		return "main";
+	}
 	
 }
