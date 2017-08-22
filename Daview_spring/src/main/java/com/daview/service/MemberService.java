@@ -12,4 +12,5 @@ public interface MemberService {
 	public int userChk(MemberDto md) throws Exception;
 
 	public String getM_Nick(String m_email) throws Exception;
+	
 }

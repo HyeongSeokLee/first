@@ -43,7 +43,7 @@ a{
 <c:if test="${empty m_email }">
 <jsp:include page="board/head.jsp" /><br>	
 </c:if>
-
+<%-- 
 <c:if test="${!empty m_email}">
 		<div id="header1">
 			<a href="main"><img src="/resources/images/DaView_C.jpg"></a>
@@ -155,36 +155,44 @@ a{
 						</c:forEach>
 					</c:if>
 				</table>
-			
+			 --%>
 				
 
 		<!-- 글목록 테이블 끝(페이징) -->		
 	
 			<p>
-				<c:if test="${curPage!=1 && curPage!=0}">
-					<a href="main?curPage=1&${x}">[처음]</a>
+			<c:if test="${pageMaker.cri.page!=1}">
+				<a href="main?page=1">[처음]</a>
+			</c:if>
+
+			<c:if test="${pageMaker.prev }">
+				<a href="main?page=${pageMaker.startPage -1}">[이전]</a>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage }"
+				end="${pageMaker.endPage }" var="i">
+				<c:if test="${pageMaker.cri.page eq i}">
+					<span style="color:black; font-weight: bold;">${i}</span>
 				</c:if>
-				<c:if test="${startPage > countList}">
-					<a href="main?curPage=${startPage - 1}${x}">[이전]</a>
+				<c:if test="${pageMaker.cri.page != i}">
+					<a href="main?page=${i}">${i}</a>
 				</c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<c:if test="${curPage eq i}">
-						<span style="color:black; font-weight: bold;">${i}</span>
-					</c:if>
-					<c:if test="${curPage != i}">
-					<a href="main?curPage=${i}${x}">${i}</a>
-					</c:if>
-				</c:forEach>
-				<c:if test="${endPage <totalPage}">
-					<a href="main?curPage=${startPage + countList}${x}">[다음]</a>
-				</c:if>
-				<c:if test="${curPage != totalPage}">
-					<a href="main?curPage=${totalPage}${x}">[끝]</a>
-				</c:if>
-			</p>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				<a href="main?page=${pageMaker.endPage +1}">[다음]</a>
+			</c:if>
+			
+			<c:if test="${pageMaker.endendPage!=pageMaker.cri.page}">
+				<a href="main?page=${pageMaker.endendPage }">[끝]</a>
+			</c:if>
+			
+		</p>		
 		</center>
 	</div>
 
+
+			
 
 
 
