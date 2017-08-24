@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css">
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 function choice(o) { 
@@ -156,40 +159,36 @@ a{
 					</c:if>
 				</table>
 			 --%>
-				
-
-		<!-- 글목록 테이블 끝(페이징) -->		
 	
-			<p>
-			<c:if test="${pageMaker.cri.page!=1}">
-				<a href="main?page=1">[처음]</a>
+	<center>
+		<ul class="pagination">
+		<c:if test="${pageMaker.cri.page!=1}">
+				<li><a href="main?page=1">처음</a></li>
 			</c:if>
-
-			<c:if test="${pageMaker.prev }">
-				<a href="main?page=${pageMaker.startPage -1}">[이전]</a>
+			
+  		<c:if test="${pageMaker.prev }">
+				<li><a href="main?page=${pageMaker.startPage -1}">이전</a></li>
 			</c:if>
-
-			<c:forEach begin="${pageMaker.startPage }"
+			
+				<c:forEach begin="${pageMaker.startPage }"
 				end="${pageMaker.endPage }" var="i">
 				<c:if test="${pageMaker.cri.page eq i}">
-					<span style="color:black; font-weight: bold;">${i}</span>
+					  <li class="active"><a href="#">${i}</a></li>
 				</c:if>
 				<c:if test="${pageMaker.cri.page != i}">
-					<a href="main?page=${i}">${i}</a>
+					<li><a href="main?page=${i}">${i}</a></li>
 				</c:if>
 			</c:forEach>
 
-			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<a href="main?page=${pageMaker.endPage +1}">[다음]</a>
+ 		 <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				<li><a href="main?page=${pageMaker.endPage +1}">다음</a></li>
 			</c:if>
 			
-			<c:if test="${pageMaker.endendPage!=pageMaker.cri.page}">
-				<a href="main?page=${pageMaker.endendPage }">[끝]</a>
+ 			<c:if test="${pageMaker.endendPage!=pageMaker.cri.page}">
+				 <li><a href="main?page=${pageMaker.endendPage }">끝</a></li>
 			</c:if>
-			
-		</p>		
-		</center>
-	</div>
+		</ul>
+	</center>
 
 
 			
