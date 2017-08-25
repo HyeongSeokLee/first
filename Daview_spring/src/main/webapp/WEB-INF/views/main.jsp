@@ -11,185 +11,128 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css">
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-function choice(o) { 
-	   var v = o.value; 
-	   document.frm.b_part.value = v;
-	   document.frm.submit(); 
-} 
-
-function selectCount(){ 
-			var aa = document.getElementById('aa').value;
-			var selectValue = document.getElementById('countList').value;
-			location.href="main?countList="+selectValue+aa;
-}
-</script>
-<style type="text/css">
-
-p a{
-	color: grey;
-	font-size: 1em;
-	font-weight: bold;
-}
-a:hover{
-	color:black;
-}
-a{
-	text-decoration: none;
-}
-</style>
+<script type="text/javascript" src="/resources/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body>
+<div class="container">
 <c:if test="${empty m_email }">
 <jsp:include page="board/head.jsp" /><br>	
 </c:if>
-<%-- 
+
 <c:if test="${!empty m_email}">
 		<div id="header1">
 			<a href="main"><img src="/resources/images/DaView_C.jpg"></a>
 		</div>
 		<div id="headerbox">
-		<center>${m_nick }님 환영합니다.<br>
+	${m_nick }님 환영합니다.<br>
 		<div style="margin-top:10px;">
 		<a href="/member/logoutPro"><img src="/resources/images/DaView_Logout3.jpg"></a>
 		<a href="/member/memberModifyForm"><img src="/resources/images/DaView_MyPage3.jpg"></a>
 		</div>
-		</center>
+		
 		</div>
 </c:if>	
 
-	<div id="border">
-		<h1>게시판</h1>
-
-	<!-- 검색창 폼 -->
-	<div id="border_table">
-	<div id="serach_wrap_board" class="search_wrap_board_style">
-		<center>
-			<form action="main.do" method="get">
-				<table id="search_t" class="search_table_style">
-					<tr>
-						<td><select name="find_field" id="find_field" style="width: 70px; height: 23px;">
-								<option value="b_subject"<c:if test = "${find_field eq 'b_subject'}">selected</c:if>>제목</option>
-								<option value="title&text"<c:if test = "${find_field eq 'title&text'}">selected</c:if>>제목+내용</option>
-								<option value="b_content"<c:if test = "${find_field eq 'b_content'}">selected</c:if>>내용</option>
-						</select></td>
-						<td><input type="text" name="find_name" id="find_name" onfocus="search()"  size="14" style="width: 300px; height: 16px;"
-							<c:if test="${!empty find_name}">value=${find_name}</c:if> />
-							<input type = "submit" value="검색" id="input_search" />
-							<input type = "button" value = "글쓰기" id = "write" onclick = "location='writeForm?pageNum=${curPage}'">
-						</td>
-					</tr>
-				</table>
-			</form>
-		</center>
-	</div>
-	
-	<table><tr height=10></table>
 
 	<!-- 게시글 목록 테이블 -->
-			<center>
-				<table border=1 align="center" bgcolor="#0096FF" >
-					<tr>
-						<th style="width: 100px;"><font color="white">번호</font></th>
-						<th>
-							<select name="b_part" style="width:100px; height:23px;" onchange="choice(this);">
-								<option value="전체"<c:if test="${b_part eq '%'}">selected</c:if>>전체</option>
-								<option value="가전" <c:if test="${b_part eq '가전' }">selected</c:if>>가전</option>
-								<option value="게임"<c:if test="${b_part eq '게임' }">selected</c:if>>게임</option>
-								<option value="숙박"<c:if test="${b_part eq '숙박' }">selected</c:if>>숙박</option>
-								<option value="식품"<c:if test="${b_part eq '식품' }">selected</c:if>>식품</option>
-								<option value="책"<c:if test="${b_part eq '책' }">selected</c:if>>책</option>
-							</select>
-							<form name="frm" action="main" method="get">
-								<input type="hidden" name="b_part" />
-							</form>
-						</th>
-						<th style="width: 350px;"><font color="white">제목</font></th>
-						<th style="width: 130px;"><font color="white">닉네임</font></th>
-						<th style="width: 130px;"><font color="white">평점</font></th>
-						<th style="width: 100px;"><font color="white">조회수</font></th>
-						<th style="width: 100px;"><font color="white">작성일자</font></th>
-					</tr>
 
-					<c:if test="${total==0}">데이터가 없습니다.</c:if>
-					<c:if test="${!empty list}">
-						<c:forEach var="l" items="${list }">
+<table class="table table-hover">
+	<thead>
+	<tr>
+		<th>번호</th>
+		<th>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary">전체</button>
+					<button type="button" class="btn btn-primary dropdown-toggle"
+						data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#">가전</a></li>
+						<li><a href="#">게임</a></li>
+						<li><a href="#">숙박</a></li>
+						<li><a href="#">식품</a></li>
+						<li><a href="#">책</a></li>
+					</ul>
+			</div>
+		</th>
+		<th> 제목</th><th> 닉네임</th><th> 평점</th><th> 조회수</th><th> 작성일자</th>
+	</tr>
+	</thead>
+	<c:if test="${empty list}">데이터가 없습니다.</c:if>
+	<c:if test="${!empty list}">
+		<c:forEach items="${list }" var="l" >
 
-						<tr>
-							<td align="center"><font color="white">${l.b_num}</font></td>
-							<td align="center"><font color="white">${l.b_part }</font></td>
-							<td>
-								<a href = "view?b_num=${l.b_num }&pageNum=${curPage}">
-								<font color="white">${l.b_subject }</font></a>
-								
-								<!-- 해당 게시글에 달린 댓글 갯수 -->
-								<font color="white">[${l.c_count }]</font> 
-						 
-							<c:if test="${l.b_rc>20 }">
-									<img src='/resources/images/hot.gif'>
-							</c:if> 
-							</td>
-			
-					<td align="center"><font color="white">
- 								${l.m_nick}</font></td> 
-						<td align="center">
-						<c:if test="${l.b_star eq '1' }">
-							<img src="/resources/images/star_1.jpg">
-						</c:if>
-						<c:if test="${l.b_star eq '2' }">
-							<img src="/resources/images/star_2.jpg">
-						</c:if>
-						<c:if test="${l.b_star eq '3' }">
-							<img src="/resources/images/star_3.jpg">
-						</c:if>
-						<c:if test="${l.b_star eq '4' }">
-							<img src="/resources/images/star_4.jpg">
-						</c:if>
-						<c:if test="${l.b_star eq '5' }">
-							<img src="/resources/images/star_5.jpg">
-						</c:if>																													
-						</td>
-						<td align="center"><font color="white">${l.b_rc }</font></td>
-						<td align="center"><font color="white">${l.date }</font></td>
-						</tr>
-						</c:forEach>
-					</c:if>
-				</table>
-			 --%>
+			<tr>
+				<td>${l.b_num}</td>
+				<td>${l.b_part }</td>
+				<td><a href="view?b_num=${l.b_num }&pageNum=${curPage}">
+						${l.b_subject }
+					</a> [${l.b_c_total }]
+				</td>
+				<td>${l.m_nick}</td>
+				<td><c:if test="${l.b_star eq '1' }">
+						<img src="/resources/images/star_1.jpg">
+					</c:if> <c:if test="${l.b_star eq '2' }">
+						<img src="/resources/images/star_2.jpg">
+					</c:if> <c:if test="${l.b_star eq '3' }">
+						<img src="/resources/images/star_3.jpg">
+					</c:if> <c:if test="${l.b_star eq '4' }">
+						<img src="/resources/images/star_4.jpg">
+					</c:if> <c:if test="${l.b_star eq '5' }">
+						<img src="/resources/images/star_5.jpg">
+					</c:if></td>
+				<td>${l.b_rc }</td>
+						
+				<!-- 오늘날짜면 시간으로 나오게하는 부분인데 여기서 처리함, 나중에 수정할 수도 있음  -->
+				<jsp:useBean id="now" class="java.util.Date" />
+				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  	
+				<fmt:formatDate value="${l.b_reg_date }" pattern="yyyy-MM-dd" var="someday"/>			
+				<c:if test="${today eq someday }">
+					<td><fmt:formatDate pattern="HH:mm" value="${l.b_reg_date }"/></td>
+				</c:if>
+				<c:if test="${today ne someday }">
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${l.b_reg_date }"/></td>
+				</c:if>
+
+			</tr>
+		</c:forEach>
+	</c:if>
+</table>
+
 	
-	<center>
+	
+	
+	<div class="text-center">
 		<ul class="pagination">
 		<c:if test="${pageMaker.cri.page!=1}">
-				<li><a href="main?page=1">처음</a></li>
+				<li><a href="main${pageMaker.makeQuery(1) }">처음</a></li>
 			</c:if>
 			
   		<c:if test="${pageMaker.prev }">
-				<li><a href="main?page=${pageMaker.startPage -1}">이전</a></li>
+				<li><a href="main${pageMaker.makeQuery(pageMaker.startPage -1)}">이전</a></li>
 			</c:if>
 			
-				<c:forEach begin="${pageMaker.startPage }"
-				end="${pageMaker.endPage }" var="i">
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="i">
 				<c:if test="${pageMaker.cri.page eq i}">
-					  <li class="active"><a href="#">${i}</a></li>
+					  <li class="active"><a>${i}</a></li>
 				</c:if>
-				<c:if test="${pageMaker.cri.page != i}">
-					<li><a href="main?page=${i}">${i}</a></li>
+				<c:if test="${pageMaker.cri.page ne i}">
+					<li><a href="main${pageMaker.makeQuery(i)}">${i}</a></li>
 				</c:if>
 			</c:forEach>
 
  		 <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<li><a href="main?page=${pageMaker.endPage +1}">다음</a></li>
+				<li><a href="main${pageMaker.makeQuery(pageMaker.endPage +1) }">다음</a></li>
 			</c:if>
 			
  			<c:if test="${pageMaker.endendPage!=pageMaker.cri.page}">
-				 <li><a href="main?page=${pageMaker.endendPage }">끝</a></li>
+				 <li><a href="main${pageMaker.makeQuery(pageMaker.endendPage) }">끝</a></li>
 			</c:if>
 		</ul>
-	</center>
-
+</div>
 
 			
 
@@ -205,7 +148,48 @@ a{
 		</select>
 		<input type="hidden" value="${x}" id="aa">
 		</div>
+		
+		<div class="box-body">
+			<select name="searchType" id="searchT">
+				<option value="nothing" <c:out value="${cri.searchType == null?'selected':''}"/>>
+				---
+				</option>
+				<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+				제목
+				</option>
+				<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+				내용
+				</option>
+				<option value="tc" <c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+				제목+내용
+				</option>
+				<option value="w" <c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+				작성자
+				</option>
+				
+			</select>
+			<input type="text" name="keyword" id="keywordInput" value="${cri.keyword}">
+			<button id="searchBtn">검색</button>
+		</div>
+		
 
+		
+		
+		
 	</div>
+	
+<script>
+	$(function(){
+		$("#searchBtn").on("click",function(event){
+										self.location="main"
+										+ "${pageMaker.makeQuery(1)}"
+										+ "&searchType="
+										+ $("#searchT option:selected").val()					
+										+ "&keyword=" + encodeURIComponent($("#keywordInput").val());
+										
+      	});
+		
+	});
+</script>
 </body>
 </html>

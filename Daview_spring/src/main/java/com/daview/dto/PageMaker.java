@@ -1,5 +1,11 @@
 package com.daview.dto;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 	
 	private int totalCount;			// 전체 게시글 수
@@ -17,7 +23,7 @@ public class PageMaker {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		
-		int endendPage = (int)Math.ceil((double)totalCount/displayPageNum);
+		int endendPage = (int)Math.ceil((double)totalCount/cri.getPerPageNum());
 		setEndendPage(endendPage);
 		calcData();
 	}
@@ -79,6 +85,38 @@ public class PageMaker {
 	}
 	public Criteria getCri() {
 		return cri;
+	}
+	
+	public String makeQuery(int page){
+		UriComponents uriComponents =
+				UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum",cri.getPerPageNum())
+				.build();
+		return uriComponents.toUriString();
+	}
+	
+	public String makeSearch(int page){
+		UriComponents uriComponents =
+				UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum",cri.getPerPageNum())
+				.queryParam("searchType", encoding(cri.getSearchType()))
+				.queryParam("keyword", encoding(cri.getKeyword()))
+				.queryParam("b_part", encoding(cri.getB_part()))
+				.build();
+		return uriComponents.toUriString();
+	}
+	
+	private String encoding(String aa){
+		if(aa==null || aa.trim().length()==0){
+			return "";
+		}
+		try{
+			return URLEncoder.encode(aa,"UTF-8");
+		}catch(UnsupportedEncodingException e){
+			return "";
+		}
 	}
 	
 	

@@ -5,6 +5,7 @@
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
+<script type="text/javascript" src="/resources/js/jquery-3.2.1.js"></script>
 
 </head>
 <body>
