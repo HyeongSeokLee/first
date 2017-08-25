@@ -9,7 +9,7 @@
 	<select id="nickChk" resultType="int">
 		select count(*)
 		from member
-		where m_nick=#{m_nick} and m_flag=0
+		where m_nick=#{m_nick}
 	</select>
 
 	<!-- 회원 등록 insert -->

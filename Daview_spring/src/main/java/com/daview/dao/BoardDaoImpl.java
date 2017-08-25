@@ -15,16 +15,18 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Inject
 	SqlSession sqlSession;
-	
-	@Override
-	public int countPaging() throws Exception {
-		return sqlSession.selectOne(namespace+".countPaging");
-	}
 	private static final String namespace = 
 			"com.daview.mapper.BoardMapper";
+	
 	@Override
-	public List<BoardDto> listCriteria(Criteria cri) throws Exception {
-		return sqlSession.selectList(namespace+".listCriteria",cri);
+	public List<BoardDto> listSearch(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".listSearch",cri);
+	}
+	@Override
+	public int listSearchCount(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".listSearchCount",cri);
 	}
 
 	

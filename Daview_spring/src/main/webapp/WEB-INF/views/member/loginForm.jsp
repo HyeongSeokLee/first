@@ -5,23 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css">
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<jsp:include page="head_1.jsp"/>
-<center>
-		<h2>로그인</h2>
-</center>
-	<form name="LoginForm" action="loginPro.do" method="post">
-		<table border=1 align="center" bgcolor="#0096FF">
-			<tr><th><font color="white">이메일</font></th><td><input type="email" name="m_email" required></td></tr>
-			<tr><th><font color="white">비밀번호</font></th><td><input type="password" name="m_pw" required></td></tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="로그인" >
-					<input type="button" value="회원가입" onclick="location.href='insertMember.do'">
-				</td>
-			</tr>
-	</table>
-	</form>
+
+
+	
+<div class="container">
+  <h2>로그인</h2>
+  <form action="/member/loginPro" method="post">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="m_email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="m_pw">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">로그인</button>
+    <button type="button" class="btn btn-default" onclick="location.href='/member/insertMember'">회원가입</button>
+  </form>
+</div>
 </body>
 </html>

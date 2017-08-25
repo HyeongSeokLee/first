@@ -30,10 +30,10 @@ public class HomeController {
 	public void main(Criteria cri, Model model) throws Exception{
 		logger.info("/main 호출");
 
-		model.addAttribute("list",service.listCriteria(cri));
+		model.addAttribute("list",service.listSearch(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.countListCriteria());
+		pageMaker.setTotalCount(service.listSearchCount(cri));
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",pageMaker);
 	

@@ -43,7 +43,9 @@
 	<tr>
 		<th>번호</th>
 		<th>
-				<div class="btn-group">
+		분류
+			<!-- 수정중 	
+			<div class="btn-group">
 					<button type="button" class="btn btn-primary">전체</button>
 					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">
@@ -56,7 +58,7 @@
 						<li><a href="#">식품</a></li>
 						<li><a href="#">책</a></li>
 					</ul>
-			</div>
+			</div> -->
 		</th>
 		<th> 제목</th><th> 닉네임</th><th> 평점</th><th> 조회수</th><th> 작성일자</th>
 	</tr>
@@ -108,11 +110,11 @@
 	<div class="text-center">
 		<ul class="pagination">
 		<c:if test="${pageMaker.cri.page!=1}">
-				<li><a href="main${pageMaker.makeQuery(1) }">처음</a></li>
+				<li><a href="main${pageMaker.makeSearch(1) }">처음</a></li>
 			</c:if>
 			
   		<c:if test="${pageMaker.prev }">
-				<li><a href="main${pageMaker.makeQuery(pageMaker.startPage -1)}">이전</a></li>
+				<li><a href="main${pageMaker.makeSearch(pageMaker.startPage -1)}">이전</a></li>
 			</c:if>
 			
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="i">
@@ -120,16 +122,16 @@
 					  <li class="active"><a>${i}</a></li>
 				</c:if>
 				<c:if test="${pageMaker.cri.page ne i}">
-					<li><a href="main${pageMaker.makeQuery(i)}">${i}</a></li>
+					<li><a href="main${pageMaker.makeSearch(i)}">${i}</a></li>
 				</c:if>
 			</c:forEach>
 
  		 <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<li><a href="main${pageMaker.makeQuery(pageMaker.endPage +1) }">다음</a></li>
+				<li><a href="main${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></li>
 			</c:if>
 			
  			<c:if test="${pageMaker.endendPage!=pageMaker.cri.page}">
-				 <li><a href="main${pageMaker.makeQuery(pageMaker.endendPage) }">끝</a></li>
+				 <li><a href="main${pageMaker.makeSearch(pageMaker.endendPage) }">끝</a></li>
 			</c:if>
 		</ul>
 </div>
@@ -138,6 +140,7 @@
 
 
 
+		<%-- 수정중 
 		<div style="text-align: center;">
 		<select id ="countList" onchange="javascript:selectCount()">
 			<option value="#" >-게시글 수-</option>
@@ -147,13 +150,10 @@
 			<option value="30">30개씩 보기</option>
 		</select>
 		<input type="hidden" value="${x}" id="aa">
-		</div>
+		</div> --%>
 		
 		<div class="box-body">
 			<select name="searchType" id="searchT">
-				<option value="nothing" <c:out value="${cri.searchType == null?'selected':''}"/>>
-				---
-				</option>
 				<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
 				제목
 				</option>

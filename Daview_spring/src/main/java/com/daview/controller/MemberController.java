@@ -31,7 +31,6 @@ public class MemberController extends EmailChk{
 	@Inject
 	private MemberService m_service;
 	
-	
 	//이메일 인증시 사용
 	@RequestMapping(value="/emailCheck",method=RequestMethod.GET)
 	public String emailChk(@RequestParam String email,@RequestParam String address,Model model) throws Exception{
@@ -82,9 +81,8 @@ public class MemberController extends EmailChk{
 	
 	//로그인창 이동
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
-	public String loginForm() throws Exception{
-		logger.info("/member/loginForm 호출");
-		return "member/loginForm";
+	public void loginForm() throws Exception{
+		logger.info("/member/loginForm 호출");            
 	}
 	
 	//로그인
@@ -110,7 +108,7 @@ public class MemberController extends EmailChk{
 		model.addAttribute("result",result);
 		model.addAttribute("m_nick",m_nick);
 
-		return "member/loginPro";
+		return "/main";
 	}
 	
 	//로그아웃

@@ -2,7 +2,7 @@ package com.daview.dto;
 
 public class Criteria {
 	private int page; //현재 페이지
-	private int perPageNum;//페이지 범위 ex) 1~10  
+	private int perPageNum;// ex) 10개 게시물씩, 20개 개시물씩 조회  
 	private String searchType;//(제목,내용,작성자 등등 검색조건)
 	private String keyword; //찾을 내용
 	private String b_part; //분류 명

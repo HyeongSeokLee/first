@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <center>
-	<a href="/board/main">
+	<a href="/main">
 		<img src="/resources/images/DaView_C.jpg" style="margin-top:20px;">
 	</a>
 </center>

@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>이메일 인증코드 입력</title>
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css">
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 var numberCode=${numberCode};
 var SetTime = 180; //최초 설정 시간 180초
@@ -53,13 +57,25 @@ function chk(){
 </script>
 </head>
 <body>
-<div class="container">
-<form name="authenform">
-	<input type="text" name="numberCode">
-	<input type="button" value="인증코드재발송" onclick="history.go(0)"><br>
-	<span id="TimerView"></span><br>
-	<input type="button" value="확인" onclick="javascript:chk()">
-</form>
-</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 </body>
 </html>

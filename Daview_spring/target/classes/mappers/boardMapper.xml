@@ -28,10 +28,50 @@
  select b_num,b_subject,b_content,b_rc,b_reg_date,b_part,m_nick,b_star,b_c_total,b_notice
  from board where b_flag=0 
  order by b_num desc, B_REG_DATE desc limit #{pageStart}, #{perPageNum}
- 
  </select>
  
  <select id="countPaging" resultType="int">
  	select count(b_num) from board where b_flag=0
+ </select>
+ 
+ 
+ 
+ 
+ <sql id="search">
+  <if test="b_part !=null">
+  	and b_part like CONCAT('%',#{b_part},'%')
+  </if>
+ <if test="searchType != null">
+ 	<if test="searchType == 't'.toString()">
+ 		and b_subject like CONCAT('%',#{keyword},'%')
+ 	</if>
+ 	<if test="searchType == 'c'.toString()">
+ 		and b_content like CONCAT('%',#{keyword},'%')
+ 	</if>
+ 	<if test="searchType == 'tc'.toString()">
+ 		and (b_subject like CONCAT('%',#{keyword},'%') OR b_content like CONCAT('%',#{keyword},'%'))
+ 	</if>
+ 	<if test="searchType == 'w'.toString()">
+ 		and m_nick like CONCAT('%',#{keyword},'%')
+ 	</if>
+ </if>
+ </sql>
+ 
+ 
+ 
+ 
+ 
+ 
+ <select id="listSearch" resultType="com.daview.dto.BoardDto">
+ select * from board 
+  where b_flag=0 
+ 	<include refid="search"></include>  
+ order by b_num desc 
+ limit #{pageStart}, #{perPageNum}
+ </select>
+ 
+ <select id="listSearchCount" resultType="int">
+ select count(b_num) from board where b_flag=0
+ 	<include refid="search"></include>
  </select>
 </mapper>

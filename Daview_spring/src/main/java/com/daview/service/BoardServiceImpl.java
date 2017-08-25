@@ -15,13 +15,16 @@ public class BoardServiceImpl implements BoardService{
 	@Inject
 	private BoardDao dao;
 	
+
 	@Override
-	public int countListCriteria() throws Exception {
-		return dao.countPaging(); 
+	public List<BoardDto> listSearch(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearch(cri);
 	}
 	@Override
-	public List<BoardDto> listCriteria(Criteria cri) throws Exception {
-		return dao.listCriteria(cri);
+	public int listSearchCount(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearchCount(cri);
 	}
 	
 	
