@@ -28,23 +28,6 @@
 		return true;
 	}
 
-	function idChk(id) {
-		width = 500;
-		height = 250;
-		sx = screen.width;
-		sy = screen.height;
-		x = (sx - width) / 3;
-		y = (sy - height) / 4;
-		if (!id) {
-			alert("아이디를 입력하세요");
-			inForm.id.focus();
-		} else {
-			url = "id_chk?id=" + id;
-			wr = window.open(url, "아이디 중복체크", "width=500,height=250");
-			wr.moveTo(x, y);
-		}
-	}
-
 	function nickChk(m_nick) {
 		width = 500;
 		height = 250;
@@ -56,7 +39,7 @@
 			alert("닉네임 입력하세요");
 			inForm.m_nick.focus();
 		} else {
-			url = "nickCheck?m_nick="+ m_nick;
+			url = "/member/nickCheck?m_nick="+ m_nick;
 			wr = window.open(url, "닉네임 중복체크", "width=500,height=250");
 			wr.moveTo(x, y);
 		}
@@ -73,7 +56,7 @@
 			alert("이메일을 입력하세요");
 			inForm.m_email.focus();
 		} else {
-			url = "emailCheck?email=" + email+"&address="+address;
+			url = "/member/emailCheck?email=" + email+"&address="+address;
 			wr = window.open(url, "이메일 인증", "width=500,height=250");
 			wr.moveTo(x, y);
 		}
@@ -86,7 +69,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="head_1.jsp" />
+	<jsp:include page="../head/head_1.jsp" />
 	<center>
 		<h2>회원가입</h2>
 	</center>

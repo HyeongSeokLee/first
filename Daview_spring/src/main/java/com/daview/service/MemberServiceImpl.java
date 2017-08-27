@@ -32,5 +32,23 @@ public class MemberServiceImpl implements MemberService{
 	public String getM_Nick(String m_email) throws Exception {
 		return dao.getM_Nick(m_email);
 	}
+
+	@Override
+	public int updateMember(MemberDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.updateMember(dto);
+	}
+
+	@Override
+	public int deleteMember(MemberDto dto) throws Exception {
+		int result = userChk(dto);
+		
+		if(result ==1){
+			return dao.deleteMember(dto);
+		}
+		return result;
+	}
+	
+	
 	
 }

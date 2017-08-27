@@ -9,4 +9,6 @@ import com.daview.dto.Criteria;
 public interface BoardDao {
 	public List<BoardDto> listSearch(Criteria cri) throws Exception;
 	public int listSearchCount(Criteria cri) throws Exception;
+	
+	public BoardDto getBoardView(int b_num) throws Exception;
 }

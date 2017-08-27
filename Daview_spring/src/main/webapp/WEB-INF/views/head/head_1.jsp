@@ -11,4 +11,5 @@
 		<img src="/resources/images/DaView_C.jpg" style="margin-top:20px;">
 	</a>
 </center>
+<!-- 구냥헤드 -->
 </html>

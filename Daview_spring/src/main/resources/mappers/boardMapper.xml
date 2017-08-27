@@ -5,38 +5,6 @@
 
 <mapper namespace="com.daview.mapper.BoardMapper">
 
-<insert id="create">
- insert into board (b_subject,b_content,b_part,m_nick,b_star) 
- values(#{b_subject},#{b_content},#{b_part},#{m_nick},#{b_star})
- </insert>
- 
- <select id="read" resultType="com.daview.dto.BoardDto">
- select b_num,b_subject,b_content,b_rc,b_reg_date,b_part,m_nick,b_star,b_c_total,b_notice 
- from board where b_num=#{b_num} and b_flag=0;
- </select>
-
- <update id="update">
- update board set b_subject = #{b_subject}, b_content = #{b_content}, b_part= #{b_part}, b_star = #{b_star}
-  where b_num= #{b_num}
- </update>
- 
- <delete id="delete">
- update board set b_flag=1 where b_num = #{b_num}
- </delete>
- 
- <select id="listCriteria" resultType="com.daview.dto.BoardDto">
- select b_num,b_subject,b_content,b_rc,b_reg_date,b_part,m_nick,b_star,b_c_total,b_notice
- from board where b_flag=0 
- order by b_num desc, B_REG_DATE desc limit #{pageStart}, #{perPageNum}
- </select>
- 
- <select id="countPaging" resultType="int">
- 	select count(b_num) from board where b_flag=0
- </select>
- 
- 
- 
- 
  <sql id="search">
   <if test="b_part !=null">
   	and b_part like CONCAT('%',#{b_part},'%')
@@ -57,13 +25,9 @@
  </if>
  </sql>
  
- 
- 
- 
- 
- 
  <select id="listSearch" resultType="com.daview.dto.BoardDto">
- select * from board 
+ select b_num,b_subject,b_content,b_rc,b_reg_date,b_part,m_nick,b_star,b_c_total,b_notice 
+ from board 
   where b_flag=0 
  	<include refid="search"></include>  
  order by b_num desc 
@@ -74,4 +38,37 @@
  select count(b_num) from board where b_flag=0
  	<include refid="search"></include>
  </select>
+ 
+ 
+ 
+ 
+ 
+ <insert id="createBoard">
+ insert into board (b_subject,b_content,b_part,m_nick,b_star) 
+ values(#{b_subject},#{b_content},#{b_part},#{m_nick},#{b_star})
+ </insert>
+ 
+ <select id="getBoardView" resultType="com.daview.dto.BoardDto">
+ select *
+ from board where b_num=#{b_num} and b_flag=0;
+ </select>
+
+ <update id="updateBoard">
+ update board set b_subject = #{b_subject}, b_content = #{b_content}, b_part= #{b_part}, b_star = #{b_star}
+  where b_num= #{b_num}
+ </update>
+ 
+ <update id="deleteBoard">
+ update board set b_flag=1 where b_num = #{b_num}
+ </update>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 </mapper>

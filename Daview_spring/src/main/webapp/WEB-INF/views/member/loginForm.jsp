@@ -10,10 +10,8 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="head_1.jsp"/>
+	<jsp:include page="../head/head_1.jsp"/>
 
-
-	
 <div class="container">
   <h2>로그인</h2>
   <form action="/member/loginPro" method="post">

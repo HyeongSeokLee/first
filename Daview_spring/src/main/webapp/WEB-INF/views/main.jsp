@@ -18,21 +18,11 @@
 <body>
 <div class="container">
 <c:if test="${empty m_email }">
-<jsp:include page="board/head.jsp" /><br>	
+<jsp:include page="head/head.jsp" /><br>	
 </c:if>
 
 <c:if test="${!empty m_email}">
-		<div id="header1">
-			<a href="main"><img src="/resources/images/DaView_C.jpg"></a>
-		</div>
-		<div id="headerbox">
-	${m_nick }님 환영합니다.<br>
-		<div style="margin-top:10px;">
-		<a href="/member/logoutPro"><img src="/resources/images/DaView_Logout3.jpg"></a>
-		<a href="/member/memberModifyForm"><img src="/resources/images/DaView_MyPage3.jpg"></a>
-		</div>
-		
-		</div>
+<jsp:include page="head/head2.jsp" /><br>
 </c:if>	
 
 
@@ -70,7 +60,7 @@
 			<tr>
 				<td>${l.b_num}</td>
 				<td>${l.b_part }</td>
-				<td><a href="view?b_num=${l.b_num }&pageNum=${curPage}">
+				<td><a href="/board/view?b_num=${l.b_num }">
 						${l.b_subject }
 					</a> [${l.b_c_total }]
 				</td>

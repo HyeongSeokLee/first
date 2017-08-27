@@ -26,6 +26,11 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.listSearchCount(cri);
 	}
+	@Override
+	public BoardDto getBoardView(int b_num) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getBoardView(b_num);
+	}
 	
 	
 

@@ -5,7 +5,7 @@
 <c:if test="${result>0}">
 	<script>
 		alert('회원가입에 성공하였습니다.');
-		location.href = '../board/main.do';
+		location.href = '/main';
 	</script>
 </c:if>
 

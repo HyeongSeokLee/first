@@ -6,19 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>이메일 인증코드 입력</title>
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.min.css">
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-
 <script type="text/javascript">
 var numberCode=${numberCode};
 var SetTime = 180; //최초 설정 시간 180초
-
 window.onload=function TimerStart(){ //브라우저가 로드되면 항상 TimerStart 함수를 실행
 	tid=setInterval('msg_time()',1000)//1초마다 msg_time()함수가 실행
 };
-
-
 /* 메일인증 타이머 함수 */
 function msg_time(){
 	m=Math.floor(SetTime/60)+"분 "+(SetTime%60)+"초";
@@ -47,35 +40,20 @@ function chk(){
 		return false;
 	}
 	alert("인증완료");
- 	opener.parent.location='insertMember.do?email=${email}&address=${address}&email_auth=Y'; 
+ 	opener.parent.location='/member/insertMember?email=${email}&address=${address}&email_auth=Y'; 
 	window.close();
 	return true;
 }
-
-
-
 </script>
 </head>
 <body>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
+<div class="container">
+<form name="authenform">
+	<input type="text" name="numberCode">
+	<input type="button" value="인증코드재발송" onclick="history.go(0)"><br>
+	<span id="TimerView"></span><br>
+	<input type="button" value="확인" onclick="javascript:chk()">
+</form>
+</div>
 </body>
 </html>

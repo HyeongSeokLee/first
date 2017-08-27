@@ -13,4 +13,7 @@ public interface MemberService {
 
 	public String getM_Nick(String m_email) throws Exception;
 	
+	public int updateMember(MemberDto dto) throws Exception;
+	
+	public int deleteMember(MemberDto dto) throws Exception;
 }

@@ -29,6 +29,17 @@
 	<select id="getM_Nick" resultType="String">
 		select m_nick
 		from member
-		where m_email=#{m_email}
+		where m_email=#{m_email} and m_flag=0
 	</select>
+	
+	<update id="updateMember">
+		update member set m_pw = #{m_pw}, m_nick = #{m_nick}
+		where m_email=#{m_email} and m_flag=0
+	</update>
+	
+	<update id="deleteMember">
+		update member set m_flag=1 
+		where m_email=#{m_email} and m_pw=#{m_pw}
+	</update>
+	
 </mapper>

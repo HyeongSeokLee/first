@@ -17,5 +17,6 @@
 		<a href="/member/insertMember"><img src="/resources/images/DaView_Join.jpg"></a>
 		</center>
 	</div>
+<!--  로그인 전 -->
 </body>
 </html>

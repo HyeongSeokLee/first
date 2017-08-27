@@ -42,4 +42,18 @@ public class MemberDaoImpl implements MemberDao {
 		String m_nick= sqlSession.selectOne(namespace+".getM_Nick", m_email);
 		return m_nick;
 	}
+
+	@Override
+	public int updateMember(MemberDto dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+".updateMember", dto);
+	}
+
+	@Override
+	public int deleteMember(MemberDto dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+".deleteMember", dto);
+	}
+	
+	
 }

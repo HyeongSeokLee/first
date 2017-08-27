@@ -6,7 +6,7 @@
 	<c:when test="${result>0}">
 		<script>
 			alert('수정이 완료되었습니다.');
-			location.href = '../board/main.do';
+			location.href = '/main';
 		</script>
 	</c:when>
 	<c:otherwise>
