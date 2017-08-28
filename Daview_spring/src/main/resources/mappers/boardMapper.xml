@@ -55,7 +55,7 @@
 
  <update id="updateBoard">
  update board set b_subject = #{b_subject}, b_content = #{b_content}, b_part= #{b_part}, b_star = #{b_star}
-  where b_num= #{b_num}
+  where b_num= #{b_num} and b_flag=0;
  </update>
  
  <update id="deleteBoard">

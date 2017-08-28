@@ -31,6 +31,18 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.getBoardView(b_num);
 	}
+	@Override
+	public int deleteBoard(int b_num) throws Exception {
+		return dao.deleteBoard(b_num);
+	}
+	@Override
+	public int createBoard(BoardDto dto) throws Exception {
+		return dao.createBoard(dto);
+	}
+	@Override
+	public int updateBoard(BoardDto dto) throws Exception {
+		return dao.updateBoard(dto);
+	}
 	
 	
 

@@ -33,7 +33,18 @@ public class BoardDaoImpl implements BoardDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".getBoardView",b_num);
 	}
-
-		
+	
+	@Override
+	public int deleteBoard(int b_num) throws Exception {
+		return sqlSession.update(namespace+".deleteBoard",b_num);
+	}
+	@Override
+	public int createBoard(BoardDto dto) throws Exception {
+		return sqlSession.insert(namespace+".createBoard",dto);
+	}
+	@Override
+	public int updateBoard(BoardDto dto) throws Exception {
+		return sqlSession.update(namespace+".updateBoard",dto);
+	}
 	
 }

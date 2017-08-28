@@ -62,8 +62,8 @@ function openDap(a,b,c,d,e,f){
 <tr height="30"><th><font color="white">작성일</font></th><td align="center"><font color="white"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.b_reg_date }"/></font></td></tr>
 <tr><th>조회수</th><td>${board.b_rc }</td></tr>
 <tr height="30"><td colspan=4 align="center">
-<input type="button" value="글 수정" onclick="location.href='updateForm.do?b_num=${board.b_num}&pageNum=${pageNum}'" />
-<input type="button" value="글 삭제" onclick="location.href='b_deleteForm.do?b_num=${board.b_num}&pageNum=${pageNum}'" />
+<input type="button" value="글 수정" onclick="location.href='/board/updateForm?b_num=${board.b_num}'" />
+<input type="button" value="글 삭제" onclick="location.href='/board/delPro_get?m_nick=${board.m_nick }&b_num=${board.b_num}'" />
 <input type="button" value="글 목록" onclick="location.href='/main'" />
 
 </td></tr></table>

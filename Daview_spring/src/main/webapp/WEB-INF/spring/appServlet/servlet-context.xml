@@ -29,6 +29,10 @@
 			 	<mapping path="/member/memberModifyPro"/>
 			 	<mapping path="/member/deleteForm2"/>
 			 	<mapping path="/member/deletePro"/>
+			 	<mapping path="/board/delPro"/>
+			 	<mapping path="/board/updateForm"/>
+			 	<mapping path="/board/updatePro"/>
+			 	<mapping path="/board/writePro"/>
 			 	<beans:ref bean="loginInterceptor"/>
 			 </interceptor>
 		</interceptors> 

@@ -162,7 +162,7 @@
 			<button id="searchBtn">검색</button>
 		</div>
 		
-
+		<input type="button" onclick="location.href='/board/writeForm'" value="자자자자자ㅏ자작성">
 		
 		
 		
