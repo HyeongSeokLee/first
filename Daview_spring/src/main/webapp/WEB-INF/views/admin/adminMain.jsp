@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"
 	type="text/css">
-<title>Insert title here</title>
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="/resources/bootstrap/css/bootstrap-theme.min.css">
@@ -19,19 +19,9 @@
 
 </head>
 <body>
-	<div class="container">
-		<c:if test="${empty m_email }">
-			<jsp:include page="head/head.jsp" /><br>
-		</c:if>
-		<c:if test="${m_email eq 'otl1202@gmail.com'}">
-			<script>
-				location.href = '/admin/adminMain';
-			</script>
-		</c:if>
-		<c:if test="${!empty m_email}">
-			<jsp:include page="head/head2.jsp" /><br>
-		</c:if>
-
+<jsp:include page="../head/adminHead.jsp" />
+<a href="#">회원관리</a><br>
+<a href="#">게시글관리</a>
 
 		<!-- 게시글 목록 테이블 -->
 
@@ -109,12 +99,12 @@
 		<div class="text-center">
 			<ul class="pagination">
 				<c:if test="${pageMaker.cri.page!=1}">
-					<li><a href="main${pageMaker.makeSearch(1) }">처음</a></li>
+					<li><a href="adminMain${pageMaker.makeSearch(1) }">처음</a></li>
 				</c:if>
 
 				<c:if test="${pageMaker.prev }">
 					<li><a
-						href="main${pageMaker.makeSearch(pageMaker.startPage -1)}">이전</a></li>
+						href="adminMain${pageMaker.makeSearch(pageMaker.startPage -1)}">이전</a></li>
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage }"
@@ -123,18 +113,18 @@
 						<li class="active"><a>${i}</a></li>
 					</c:if>
 					<c:if test="${pageMaker.cri.page ne i}">
-						<li><a href="main${pageMaker.makeSearch(i)}">${i}</a></li>
+						<li><a href="adminMain${pageMaker.makeSearch(i)}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 
 				<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 					<li><a
-						href="main${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></li>
+						href="adminMain${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></li>
 				</c:if>
 
 				<c:if test="${pageMaker.endendPage!=pageMaker.cri.page}">
 					<li><a
-						href="main${pageMaker.makeSearch(pageMaker.endendPage) }">끝</a></li>
+						href="adminMain${pageMaker.makeSearch(pageMaker.endendPage) }">끝</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -174,9 +164,6 @@
 				value="${cri.keyword}">
 			<button id="searchBtn">검색</button>
 		</div>
-
-		<input type="button" onclick="location.href='/board/writeForm'"
-			value="자자자자자ㅏ자작성">
 
 
 

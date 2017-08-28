@@ -53,15 +53,15 @@ td {
 		onsubmit="return writeSave()" method="post">
 		<table border=1 align="center" bgcolor="#0096FF" width="550">
 			<tr>
-				<td align=right colspan=2><a href="/main"><font color="white">글목록</font></a></td>
+				<td align=right colspan=2><a href="/main"><font color="blue">글목록</font></a></td>
 			</tr>
 			<tr>
-				<th><font color="white">제목</font></th>
+				<th><font color="black">제목</font></th>
 				<td><input type="text" size="60" maxlength="50"
 					name="b_subject" required></td>
 			</tr>
 			<tr>
-				<th><font color="white">구분</font></th>
+				<th><font color="black">구분</font></th>
 				<td><select name="b_part" style="width: 100px; height: 23px;">
 							<option value="전체">전체</option>
 							<option value="가전">가전</option>
@@ -72,11 +72,11 @@ td {
 							<option value="육아">육아</option>
 				</select></td>
 			<tr>
-				<th><font color="white">내용</font></th>
+				<th><font color="black">내용</font></th>
 				<td><textarea rows="13" cols="60" name="b_content"></textarea></td>
 			</tr>
 			<tr>
-				<th><font color="white">별 선택</font></th>
+				<th><font color="black">별 선택</font></th>
 				<td>
 					<p class="star_rating">
 						<input type = "hidden" name="b_star" id="b_star" value ="3">
